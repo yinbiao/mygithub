@@ -1,0 +1,26 @@
+---
+
+- name: install php
+  hosts: 192.168.30.54
+  gather_facts: "{{ gather_facts | default(True) }}"
+  pre_tasks:
+    - include: common-tasks/install_ius_yum.yml
+
+  tasks:
+    - name: install 
+      yum: name={{ item }} state=installed
+      with_items:
+        - mysql55w-libs.x86_64
+        - mysql55.x86_64
+        - mysql55w-server.x86_64
+      tags: install
+
+
+# mysql -u root
+# use mysql;
+# update user set password=PASSWORD("123456") where User='root';
+# flush privileges; 
+
+# chkconfig --list | grep mysqld
+# chkconfig mysqld on
+# mysql_secure_installation

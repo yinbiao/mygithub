@@ -1,0 +1,23 @@
+---
+
+- name: install php
+  hosts: 192.168.30.54
+  gather_facts: "{{ gather_facts | default(True) }}"
+  pre_tasks:
+    - include: common-tasks/install_el_yum.yml
+
+  tasks:
+    - name: install 
+      yum: name={{ item }} state=installed
+      with_items:
+        - php55w.x86_64
+        - php55w-cli.x86_64
+        - php55w-common.x86_64
+        - php55w-gd.x86_64
+        - php55w-ldap.x86_64
+        - php55w-mbstring.x86_64
+        - php55w-mcrypt.x86_64
+        - php55w-mysql.x86_64
+        - php55w-pdo.x86_64
+        - php55w-fpm
+      tags: install

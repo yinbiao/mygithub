@@ -1,0 +1,4 @@
+php_errordir: /data/logs
+php_errorlog: "{{ php_errordir }}/php_error.log"
+php_user: nginx
+php_group: nginx

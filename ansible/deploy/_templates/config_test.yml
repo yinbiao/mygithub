@@ -1,0 +1,10 @@
+---
+# Main yml
+  - hosts: "pc-apptest"
+    serial: "1"
+    vars_files:
+      - ../storehouse_conf.yml #仓库定义
+      - ../vars/main.yml #全局定义
+      - vars/main.yml #角色全局定义
+    roles:
+      - { role: config }

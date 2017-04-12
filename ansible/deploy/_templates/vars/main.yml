@@ -1,0 +1,16 @@
+---
+
+project: tomcat
+
+#自定义配置
+server_user: tomcat
+server_group: tomcat
+server_uid:  
+server_gid: 
+
+#安装选项
+tomcat_version: 8-0-35
+CHECKINSTALL: True #检查是否有安装
+ADDserverUSER: True #是否添加账户
+DELETE: False #是否删除服务器上的临时工作目录
+

@@ -1,0 +1,50 @@
+---
+
+- name: create work directory
+  file: path={{ TMP }} state=directory
+
+#添加用户
+- name: add  group
+  group: name="{{ server_group }}" gid="{{ server_gid }}" system=yes
+  when: ADDserverUSER and server_gid
+  tags: [addserver]
+
+- name: add group
+  group: name="{{ server_group }}" system=yes
+  when: ADDserverUSER and not server_gid
+  tags: [addserver]
+
+- name: add user
+  user: name="{{ server_user }}" group="{{ server_group }}" uid="{{ server_uid }}" shell=/sbin/nologin createhome=no system=yes
+  when: ADDserverUSER and server_uid
+  tags: [addserver]
+
+- name: add  user
+  user: name="{{ server_user }}" group="{{ server_group }}" shell=/sbin/nologin createhome=no system=yes
+  when: ADDserverUSER and not server_uid
+  tags: [addserver]
+
+
+#上传脚本文件
+- name: upload main file
+  template: src=main.sh dest={{ TMP }}/ mode=0744
+  tags: [install]
+
+#上传包
+- name: upload tomcat package
+  copy: src={{ sh_dir }}/{{ item }} dest={{ TMP }}/
+  with_items:
+    - "{{ sh_cat[cat_version] }}"
+
+- name: check 
+  shell: "{{ TMP }}/main.sh checkinstall"
+  when: CHECKINSTALL
+
+#执行脚本文件
+- name: install
+  shell: "{{ TMP }}/main.sh install"
+  tags: [install]
+
+- name: delete file
+  file: path={{ TMP }} state=absent
+  when: DELETE

@@ -1,0 +1,4 @@
+---
+
+- name: reload nginxconf
+  shell: /usr/local/nginx/sbin/nginx -s reload

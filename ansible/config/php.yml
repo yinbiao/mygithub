@@ -1,0 +1,8 @@
+---
+
+  - hosts: 192.168.30.54
+    serial: "3"
+    vars_files:
+      - vars/php.yml
+    roles:
+      - { role: php }

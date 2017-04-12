@@ -1,0 +1,15 @@
+---
+
+- name: install yum el from http://mirror.webtatic.com/yum/el[67]/latest.rpm
+  yum:
+    name: http://mirror.webtatic.com/yum/el6/latest.rpm
+    state: present  
+
+
+# - name: debug
+#   debug:
+#     msg: "test: {{ el_version[6] }}"
+#     #var: el_version
+# - name: d2
+#   debug:
+#     var: hostvars

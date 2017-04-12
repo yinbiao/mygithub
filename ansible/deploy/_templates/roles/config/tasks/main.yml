@@ -1,0 +1,14 @@
+---
+
+- name: create directory
+  file: path={{ item }} state=directory
+  with_items:
+    - "{{ logdir }}"
+    - "{{ datadir }}"
+  tags: [create]
+
+- name: upload config 
+  template: src={{ item }} dest=/usr/local/zookeeper/conf/
+  with_items:
+    - "zoo.cfg"
+  tags: [config]

@@ -1,0 +1,21 @@
+---
+
+- name: create log dir
+  file: path={{ php_errordir }} state=directory
+
+- name: create php user
+  user: name={{ php_user }} group={{ php_group }} comment="php progress user"
+
+- name: enable php-fpm
+  service: name=php-fpm enabled=yes
+
+- name: copy php-fpm.conf
+  template: src=php-fpm.conf dest=/etc/php-fpm.conf
+  tags: config
+  notify: reload php
+
+- name: copy php-fpm.d file
+  template: src="{{ item }}" dest=/etc/php-fpm.d/
+  with_items:
+    - php-fpm.d/www.conf
+  notify: reload php

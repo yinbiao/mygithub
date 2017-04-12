@@ -1,0 +1,13 @@
+---
+
+- name: install begin
+  yum:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+    state: present 
+
+- name: install 
+  yum:
+    name: https://centos6.iuscommunity.org/ius-release.rpm
+    state: present
+ 
+
