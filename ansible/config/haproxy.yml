@@ -1,0 +1,8 @@
+---
+
+  - hosts: lvs
+    serial: "3"
+    vars_files:
+      - vars/haproxy.yml
+    roles:
+      - { role: haproxy }

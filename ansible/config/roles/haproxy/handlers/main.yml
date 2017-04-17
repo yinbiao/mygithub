@@ -1,0 +1,4 @@
+---
+
+- name: reload haproxy
+  shell: /etc/init.d/haproxy reload

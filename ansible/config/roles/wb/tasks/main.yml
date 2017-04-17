@@ -1,0 +1,8 @@
+---
+
+
+
+  - name: push config directory
+    synchronize: src={{ inventory_dir }}/config/wb/config dest=/data/www/wb/
+    tags: config
+    notify: reload php

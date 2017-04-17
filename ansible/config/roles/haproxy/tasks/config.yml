@@ -1,0 +1,9 @@
+---
+
+
+  - name: push config file
+    template: src=haproxy.cfg dest=/etc/haproxy/haproxy.cfg
+    tags: config
+    notify: reload haproxy
+
+

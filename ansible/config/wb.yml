@@ -3,6 +3,6 @@
   - hosts: nginx
     serial: "3"
     vars_files:
-      - vars/php.yml
+      - vars/wb.yml
     roles:
-      - { role: php }
+      - { role: wb }

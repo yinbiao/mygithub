@@ -3,6 +3,13 @@
 - name: create log dir
   file: path={{ php_errordir }} state=directory
 
+- name: create session directory
+  file: path={{ item }} state=directory group={{ php_user }} owner={{ php_user }}
+  with_items:
+    - /data/php/session
+    - /data/php/wsdlcache
+  tags: session
+
 - name: create php user
   user: name={{ php_user }} group={{ php_group }} comment="php progress user"
 
@@ -18,4 +25,10 @@
   template: src="{{ item }}" dest=/etc/php-fpm.d/
   with_items:
     - php-fpm.d/www.conf
+  tags: config
+  notify: reload php
+
+- name: copy php.ini
+  template: src=php.ini dest=/etc/php.ini
+  tags: config
   notify: reload php

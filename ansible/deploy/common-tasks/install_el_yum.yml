@@ -5,6 +5,11 @@
     name: http://mirror.webtatic.com/yum/el6/latest.rpm
     state: present  
 
+- name: install epel
+  yum:
+    name: http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+    state: present
+
 
 # - name: debug
 #   debug:

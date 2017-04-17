@@ -1,7 +1,7 @@
 ---
 
 - name: install php
-  hosts: 192.168.30.54
+  hosts: nginx
   gather_facts: "{{ gather_facts | default(True) }}"
   pre_tasks:
     - include: common-tasks/install_el_yum.yml
@@ -10,6 +10,8 @@
     - name: install 
       yum: name={{ item }} state=installed
       with_items:
+        - libmcrypt
+        - libmcrypt-devel
         - php55w.x86_64
         - php55w-cli.x86_64
         - php55w-common.x86_64
@@ -20,4 +22,6 @@
         - php55w-mysql.x86_64
         - php55w-pdo.x86_64
         - php55w-fpm
+        - php55w-process.x86_64
+        - php55w-devel.x86_64
       tags: install

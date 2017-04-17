@@ -1,7 +1,7 @@
 ---
 
-- name: install php
-  hosts: 192.168.30.54
+- name: install mysql
+  hosts: mysql
   gather_facts: "{{ gather_facts | default(True) }}"
   pre_tasks:
     - include: common-tasks/install_ius_yum.yml
@@ -10,9 +10,9 @@
     - name: install 
       yum: name={{ item }} state=installed
       with_items:
-        - mysql55w-libs.x86_64
+        - mysql55-libs.x86_64
         - mysql55.x86_64
-        - mysql55w-server.x86_64
+        - mysql55-server.x86_64
       tags: install
 
 

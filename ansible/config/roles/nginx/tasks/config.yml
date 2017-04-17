@@ -3,7 +3,7 @@
 
   - name: push config file
     template: src=nginx.conf dest=/usr/local/nginx/conf/nginx.conf
-    tags: pushconf
+    tags: config
     notify: reload nginxconf
 
 
